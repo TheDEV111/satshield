@@ -76,6 +76,14 @@ clarinet test
 ```
 The test suite utilizes the Clarinet SDK with `vitest` to verify vault initialization, health-check conditions, micro-unwind events, and strict post-condition security measures.
 
+## 🌐 Testnet Deployment
+
+The smart contracts for SatShield have been successfully deployed to the Stacks Testnet.
+
+You can view the deployment transactions and contract interactions here:
+[Stacks Testnet Explorer - SatShield Deployments](https://explorer.hiro.so/address/ST24BDDZQHPNM6CMH2NVXSGZHD1M0S3ZE1NWFPDTV?chain=testnet&tab=transactions)
+
+For full details, please refer to the [TESTNET_DEPLOYMENT.md](./TESTNET_DEPLOYMENT.md) document.
 ## 🛠️ Technology Stack
 * **Blockchain:** Stacks L2, Clarity 5, Clarinet
 * **Frontend:** Next.js 14, React 19, Tailwind CSS, Lucide React
