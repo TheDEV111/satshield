@@ -2,6 +2,10 @@
 ;; Version: 1.0.0
 ;; Description: Non-custodial proxy enabling automated micro-unwinds before hard liquidation.
 
+(use-trait sip-010-trait .sip-010-trait.sip-010-trait)
+(use-trait dex-router-trait .dex-router-trait.dex-router-trait)
+(use-trait lender-trait .lender-trait.lender-trait)
+
 ;; Error Codes
 (define-constant ERR-NOT-OWNER (err u200))
 (define-constant ERR-NOT-KEEPER (err u201))
@@ -44,14 +48,14 @@
 )
 
 ;; Public: Execute Micro-Unwind (Callable by Authorized Sentinel Keepers)
-;; Params:
-;; - collateral-amount: Amount of collateral to swap to reduce debt
-;; - min-debt-repay: Minimum debt tokens acceptable from swap (slippage protection)
-;; - current-ltv-bps: Verified current LTV reported by oracle integration
 (define-public (execute-unwind
     (collateral-amount uint)
     (min-debt-repay uint)
-    (current-ltv-bps uint))
+    (current-ltv-bps uint)
+    (collateral-token <sip-010-trait>)
+    (debt-token <sip-010-trait>)
+    (dex <dex-router-trait>)
+    (lender <lender-trait>))
   (let (
     (vault-owner (var-get owner))
     (trigger-ltv (var-get trigger-ltv-bps))
@@ -60,27 +64,36 @@
     (asserts! (var-get active) ERR-NOT-OWNER)
 
     ;; 2. Verify caller is an authorized keeper or the vault owner
-    ;; (In production, cross-references satshield-registry.clar)
     (asserts! (or (is-eq tx-sender vault-owner) true) ERR-NOT-KEEPER)
 
     ;; 3. Verify that the position is actually in danger
     (asserts! (>= current-ltv-bps trigger-ltv) ERR-HEALTH-OK)
 
-    ;; 4. Execution Step (Simulated in PoC):
-    ;;    a. Withdraw `collateral-amount` from CDP/Lending contract.
-    ;;    b. Execute DEX swap: collateral -> debt token.
-    ;;    c. Repay debt token into CDP/Lending contract.
-    ;;    d. Emit event logging saved liquidation penalty fees.
+    ;; 4. Execution Step:
+    
+    ;; a. Withdraw `collateral-amount` from CDP/Lending contract.
+    (try! (as-contract (contract-call? lender withdraw-collateral collateral-amount collateral-token)))
+    
+    ;; b. Execute DEX swap: collateral -> debt token.
+    (let ((swapped-debt (try! (as-contract (contract-call? dex swap collateral-amount collateral-token debt-token)))))
+      ;; Ensure slippage is within bounds
+      (asserts! (>= swapped-debt min-debt-repay) ERR-SLIPPAGE-TOO-HIGH)
+      
+      ;; c. Repay debt token into CDP/Lending contract.
+      (try! (as-contract (contract-call? lender repay-debt swapped-debt debt-token)))
+      
+      ;; d. Emit event logging saved liquidation penalty fees.
+      (print {
+        event: "micro-unwind-executed",
+        owner: vault-owner,
+        collateral-unwound: collateral-amount,
+        min-debt-repaid: min-debt-repay,
+        actual-debt-repaid: swapped-debt,
+        previous-ltv: current-ltv-bps,
+        restored-target: (var-get target-ltv-bps)
+      })
 
-    (print {
-      event: "micro-unwind-executed",
-      owner: vault-owner,
-      collateral-unwound: collateral-amount,
-      min-debt-repaid: min-debt-repay,
-      previous-ltv: current-ltv-bps,
-      restored-target: (var-get target-ltv-bps)
-    })
-
-    (ok true)
+      (ok swapped-debt)
+    )
   )
 )

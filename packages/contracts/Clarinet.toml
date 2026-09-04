@@ -29,3 +29,18 @@ epoch = 2.1
 path = 'contracts/mocks/mock-dex.clar'
 clarity_version = 2
 epoch = 2.1
+
+[contracts.sip-010-trait]
+path = 'contracts/traits/sip-010-trait.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.dex-router-trait]
+path = 'contracts/traits/dex-router-trait.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.lender-trait]
+path = 'contracts/traits/lender-trait.clar'
+clarity_version = 2
+epoch = 2.1

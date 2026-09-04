@@ -103,6 +103,9 @@ importers:
       '@hirosystems/clarinet-sdk':
         specifier: latest
         version: 3.8.1
+      '@stacks/transactions':
+        specifier: ^7.6.0
+        version: 7.6.0
       vitest:
         specifier: latest
         version: 5.0.0(@types/node@26.4.1)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0))
@@ -6622,7 +6625,7 @@ snapshots:
 
   jsontokens@4.0.1:
     dependencies:
-      '@noble/hashes': 1.1.5
+      '@noble/hashes': 1.8.0
       '@noble/secp256k1': 1.7.1
       base64-js: 1.5.1
 

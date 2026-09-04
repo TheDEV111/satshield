@@ -1,8 +1,9 @@
-;; Mock Lender
-(define-public (borrow (amount uint))
-  (ok true)
+(use-trait sip-010-trait .sip-010-trait.sip-010-trait)
+
+(define-public (withdraw-collateral (amount uint) (collateral-token <sip-010-trait>))
+  (ok amount)
 )
 
-(define-public (repay (amount uint))
-  (ok true)
+(define-public (repay-debt (amount uint) (debt-token <sip-010-trait>))
+  (ok amount)
 )

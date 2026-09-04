@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@hirosystems/clarinet-sdk": "latest",
+    "@stacks/transactions": "^7.6.0",
     "vitest": "latest"
   }
 }
