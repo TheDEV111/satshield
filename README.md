@@ -1,5 +1,9 @@
 # SatShield 🛡️
 
+<div align="center">
+  <img src="./apps/web/public/satshield-logo.jpg" alt="SatShield Logo" width="300" />
+</div>
+
 **SatShield** is a non-custodial liquidation protection protocol built on the Stacks blockchain. It functions as an autonomous risk-mitigation middleware, preventing catastrophic liquidations (and their associated 10%–15% penalty fees) by performing automated micro-unwinds before positions reach insolvency.
 
 By utilizing autonomous Sentinel Keepers, SatShield constantly monitors spot asset volatility and performs atomic debt reductions to keep your collateralized debt positions (CDPs) healthy across the DeFi ecosystem on Stacks.
