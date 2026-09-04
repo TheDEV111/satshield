@@ -1,0 +1,12 @@
+{
+  "name": "@satshield/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@hirosystems/clarinet-sdk": "latest",
+    "vitest": "latest"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "keeper",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@stacks/network": "latest",
+    "@stacks/transactions": "latest",
+    "@satshield/shared": "workspace:*",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@satshield/tsconfig": "workspace:*",
+    "@types/node": "latest",
+    "ts-node": "latest",
+    "typescript": "latest"
+  }
+}

@@ -1,0 +1,31 @@
+[project]
+name = 'satshield-contracts'
+description = 'SatShield Smart Contracts'
+authors = []
+telemetry = false
+cache_dir = './.cache'
+
+[contracts.satshield-registry]
+path = 'contracts/satshield-registry.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.satshield-vault]
+path = 'contracts/satshield-vault.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.mock-sip010]
+path = 'contracts/mocks/mock-sip010.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.mock-lender]
+path = 'contracts/mocks/mock-lender.clar'
+clarity_version = 2
+epoch = 2.1
+
+[contracts.mock-dex]
+path = 'contracts/mocks/mock-dex.clar'
+clarity_version = 2
+epoch = 2.1

@@ -1,0 +1,9 @@
+{
+  "extends": "@satshield/tsconfig/base.json",
+  "include": [],
+  "references": [
+    { "path": "./apps/keeper" },
+    { "path": "./apps/web" },
+    { "path": "./packages/shared" }
+  ]
+}

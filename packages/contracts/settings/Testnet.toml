@@ -1,0 +1,6 @@
+[network]
+name = "testnet"
+rpc_url = "https://api.testnet.hiro.so"
+
+[accounts.deployer]
+mnemonic = "YOUR TWELVE OR TWENTY FOUR WORD TESTNET MNEMONIC HERE"

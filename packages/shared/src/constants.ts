@@ -1,0 +1,3 @@
+export const DEFAULT_TRIGGER_LTV_BPS = 7200;
+export const DEFAULT_TARGET_LTV_BPS = 6500;
+export const DEFAULT_MAX_SLIPPAGE_BPS = 150;

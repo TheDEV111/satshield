@@ -1,0 +1,21 @@
+
+> web@0.1.0 build /home/henry/projects/satshield/apps/web
+> next build
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 63ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.7s
+  Finished TypeScript in 5.5s    ✓ Finished TypeScript in 5.5s 
+  Collecting page data using 5 workers in 1189ms    ✓ Collecting page data using 5 workers in 1189ms 
+✓ Generating static pages using 5 workers (4/4) in 1297ms
+  Finalizing page optimization in 13ms    ✓ Finalizing page optimization in 13ms 
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
